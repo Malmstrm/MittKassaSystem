@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MittKassaSystem.ProductFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,14 @@ namespace MittKassaSystem.MenuFolder
     public class MainMenu
     {
         private readonly MenuSystem _menuSystem;
+        private readonly ProductManager _productManager;
+        private readonly MenuProducts _menuProducts;
         public MainMenu()
         {
             string prompt = "Welcome";
             string[] options = { "Customer", "Product", "Exit" };
             _menuSystem = new MenuSystem(prompt, options);
+            _menuProducts = new MenuProducts();
         }
         public void Show()
         {
@@ -34,6 +38,7 @@ namespace MittKassaSystem.MenuFolder
                 case 1:
                     Console.Clear();
                     Console.WriteLine("Product Selected");
+                    _menuProducts.Show();
                     break;
                 case 2:
                     Console.Clear();

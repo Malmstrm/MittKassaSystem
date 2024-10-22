@@ -70,7 +70,7 @@ namespace MittKassaSystem.ProductFolder
                     {
                         edit.Name = newName;
                     }
-                    Console.Write("\nSet new price: ");
+                    Console.Write("Set new price: ");
                     string newPriceInput = Console.ReadLine();
                     if (!string.IsNullOrEmpty(newPriceInput) && decimal.TryParse(newPriceInput, out decimal newPrice))
                     {
@@ -105,6 +105,8 @@ namespace MittKassaSystem.ProductFolder
                 else Console.WriteLine($"Product with ID {id} does not exist.");
             }
             else Console.WriteLine("Invalid id, please try again.");
+
+            file.SaveProducts(products); 
         }
     }
 }
