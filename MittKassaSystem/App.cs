@@ -1,4 +1,5 @@
 ﻿using MittKassaSystem.MenuFolder;
+using MittKassaSystem.ProductFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace MittKassaSystem
             Console.WriteLine("Loading files.");
 
             MainMenu mainMenu = new MainMenu();
+            FileHandler file = new FileHandler();
+            file.LoadProduct();
             mainMenu.Show();
 
         }
