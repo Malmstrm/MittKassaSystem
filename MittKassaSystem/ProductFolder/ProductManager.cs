@@ -20,7 +20,7 @@ namespace MittKassaSystem.ProductFolder
             this.file = file;
 
             products = file.LoadProduct();
-            input = new ProductInput(products);
+            //input = new ProductInput(products);
         }
         public List<Product> GetProducts()
         {
@@ -44,11 +44,19 @@ namespace MittKassaSystem.ProductFolder
                 Console.Clear();
                 Console.WriteLine($"Product added\n" +
                 $"ID: {newId}, Name: {name}, Price: {price}");
+
+                Console.WriteLine("Current product list:");
+                foreach (var product in products)
+                {
+                    Console.WriteLine($"{product.Id}: {product.Name} - {product.Price:C}");
+                }
+
                 Console.Write("\nDo you want to add another product? Y/N: ");
                 if (Console.ReadLine().ToLower() == "n")
                 {
                     break;
                 }
+
             }
         }
         public void EditProduct()
@@ -57,6 +65,7 @@ namespace MittKassaSystem.ProductFolder
             display.DisplayAllProducts(products);
 
             Console.WriteLine("\nLeave blank to keep current name & price.");
+            Console.WriteLine("'Exit' to return to menu.");
             Console.Write("\nEnter ID: ");
             if (byte.TryParse(Console.ReadLine(), out byte id))
             {
@@ -66,21 +75,53 @@ namespace MittKassaSystem.ProductFolder
                     Console.WriteLine($"\nCurrent name: {edit.Name} & price: {edit.Price:C}.");
                     Console.Write("Set new name: ");
                     string newName = Console.ReadLine();
+
+                    if (newName.ToLower() == "exit")
+                    {
+                        return;  // Avsluta redigeringen och återgå
+                    }
+
                     if (!string.IsNullOrEmpty(newName))
                     {
                         edit.Name = newName;
                     }
+                    else
+                    {
+                        Console.WriteLine("No new name entered. Keeping current name.");
+                    }
+
                     Console.Write("Set new price: ");
                     string newPriceInput = Console.ReadLine();
+
+                    if (newPriceInput.ToLower() == "exit")
+                    {
+                        return;  // Avsluta redigeringen och återgå
+                    }
+
                     if (!string.IsNullOrEmpty(newPriceInput) && decimal.TryParse(newPriceInput, out decimal newPrice))
                     {
                         edit.Price = newPrice;
+                        file.SaveProducts(products);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No new price entered. Keeping current price.");
                     }
                     Console.WriteLine("Product updated.");
                 }
-                else Console.WriteLine("Couldnt find ID");
+                else
+                {
+                    Console.WriteLine("Couldnt find ID");
+                    Console.ReadKey(true);
+                }
+
             }
-            else Console.WriteLine("Invalid ID, try again.");
+            else
+            {
+                Console.WriteLine("Invalid ID, try again.");
+                Console.ReadKey(true);
+            }
+            
         }
         public void DeleteProduct()
         {
@@ -98,6 +139,7 @@ namespace MittKassaSystem.ProductFolder
                     if (confirmation == "y")
                     {
                         products.Remove(delete);
+                        file.SaveProducts(products);
                         Console.WriteLine($"Product '{delete.Name}' has been deleted");
                     }
                     else Console.WriteLine("Deletion been cancelled.");
@@ -106,7 +148,7 @@ namespace MittKassaSystem.ProductFolder
             }
             else Console.WriteLine("Invalid id, please try again.");
 
-            file.SaveProducts(products); 
+            
         }
     }
 }
