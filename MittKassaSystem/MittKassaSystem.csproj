@@ -11,7 +11,6 @@
     <Folder Include="Files\" />
     <Folder Include="ShoppingFolder\" />
     <Folder Include="ReceiptFolder\" />
-    <Folder Include="ProductFolder\" />
   </ItemGroup>
 
 </Project>
