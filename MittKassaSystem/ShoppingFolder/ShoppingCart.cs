@@ -18,16 +18,14 @@ namespace MittKassaSystem.ShoppingFolder
         private readonly ProductDisplay display;
         private readonly ReceiptDisplay receiptDisplay;
 
-        public ShoppingCart(ProductManager productManager, ReceiptRepository receiptRepository, ReceiptDisplay receiptDisplay, ReceiptNumberGenerator numberGenerator)
+        public ShoppingCart(ProductManager productManager, ReceiptRepository receiptRepository, ReceiptDisplay receiptDisplay, ReceiptNumberGenerator numberGenerator, List<Product> availableProducts)
         {
             this.productManager = productManager;
             this.receiptRepository = receiptRepository;
             this.receiptDisplay = receiptDisplay;
             this.numberGenerator = numberGenerator;
-
-            availableProducts = productManager.GetProducts();  // Ladda produkterna vid start
-
-            display = new ProductDisplay();
+            this.availableProducts = availableProducts; // Se till att det är List<Product>
+            this.display = new ProductDisplay();
         }
         //private void UpdateAvailableProducts()
         //{
@@ -124,7 +122,7 @@ namespace MittKassaSystem.ShoppingFolder
         {
             if (cart.Count == 0)
             {
-                Console.WriteLine("No items in the cart.");
+                Console.WriteLine("\nNo items in the cart.");
             }
             else
             {

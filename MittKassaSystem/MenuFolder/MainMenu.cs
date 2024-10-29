@@ -11,30 +11,37 @@ namespace MittKassaSystem.MenuFolder
 {
     public class MainMenu
     {
+        private List<Product> products;
         private readonly MenuSystem _menuSystem;
         private readonly ProductManager productManager;
         private readonly MenuProducts _menuProducts;
         private readonly CustomerMenu _customerMenu;
         private readonly ShoppingCart _shoppingCart;
+
         public MainMenu()
         {
             string prompt = "Welcome";
             string[] options = { "Customer", "Product", "Exit" };
 
-            ProductDisplay display = new ProductDisplay();
-            ProductInput input = new ProductInput(new List<Product>()); // Tom lista till att börja med
+            // Initialisera produktlistan EN gång här
             FileHandler file = new FileHandler();
+            products = file.LoadProduct();
+
+            ProductDisplay display = new ProductDisplay();
+            ProductInput input = new ProductInput(products); // Skickar samma produktlista
 
             ReceiptNumberGenerator numberGenerator = new ReceiptNumberGenerator();
             ReceiptRepository receiptRepository = new ReceiptRepository(numberGenerator);
             ReceiptDisplay receiptDisplay = new ReceiptDisplay();
 
             _menuSystem = new MenuSystem(prompt, options);
-            productManager = new ProductManager(display, input, file);
-            _menuProducts = new MenuProducts();
-            _customerMenu = new CustomerMenu();
-            _shoppingCart = new ShoppingCart(productManager, receiptRepository, receiptDisplay, numberGenerator);
 
+            // Skicka produkterna till alla instanser
+            productManager = new ProductManager(display, input, file, products);
+            _menuProducts = new MenuProducts(products);
+            _customerMenu = new CustomerMenu(products);
+
+            _shoppingCart = new ShoppingCart(productManager, receiptRepository, receiptDisplay, numberGenerator, products);
         }
         public void Show()
         {

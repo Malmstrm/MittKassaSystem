@@ -17,6 +17,7 @@ namespace MittKassaSystem.ProductFolder
             Name = name;
             Price = price;
         }
+        public Product() { }
         public string ToCsv()
         {
             return $"ID: {Id}, Name: {Name}, Price: {Price:C}";

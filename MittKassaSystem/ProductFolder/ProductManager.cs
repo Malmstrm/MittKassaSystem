@@ -9,18 +9,16 @@ namespace MittKassaSystem.ProductFolder
     public class ProductManager
     {
         private List<Product> products;
-        private readonly ProductDisplay display;
-        private readonly ProductInput input;
-        private readonly FileHandler file;
-        
-        public ProductManager(ProductDisplay display, ProductInput input, FileHandler file)
+        private ProductDisplay display;
+        private ProductInput input;
+        private FileHandler file;
+
+        public ProductManager(ProductDisplay display, ProductInput input, FileHandler fileHandler, List<Product> products)
         {
             this.display = display;
             this.input = input;
-            this.file = file;
-
-            products = file.LoadProduct();
-            //input = new ProductInput(products);
+            this.file = fileHandler;
+            this.products = products; // Spara referensen till produktlistan
         }
         public List<Product> GetProducts()
         {
