@@ -27,17 +27,6 @@ namespace MittKassaSystem.ShoppingFolder
             this.availableProducts = availableProducts; // Se till att det är List<Product>
             this.display = new ProductDisplay();
         }
-        //private void UpdateAvailableProducts()
-        //{
-        //    //availableProducts = productManager.GetProducts();
-
-        //    availableProducts = productManager.GetProducts();
-        //    Console.WriteLine("Updated product list in ShoppingCart:");
-        //    foreach (var product in availableProducts)
-        //    {
-        //        Console.WriteLine($"{product.Id}: {product.Name} - {product.Price:C}");
-        //    }
-        //}
         public void AddToCart(Product product, byte quantity)
         {
             cart.Add(new ShoppingCartItem(product, quantity));
@@ -48,8 +37,6 @@ namespace MittKassaSystem.ShoppingFolder
             
             while (true)
             {
-                //UpdateAvailableProducts();
-
                 Console.Clear();
 
                 display.DisplayAllProducts(availableProducts);
@@ -168,7 +155,7 @@ namespace MittKassaSystem.ShoppingFolder
                 }
                 else Console.WriteLine("Insufficient amount paid, please try again");
             }
-            Console.WriteLine("Invalid input, please enter valid amount.");
+            else Console.WriteLine("Invalid input, please enter valid amount.");
 
             Console.WriteLine("Press any key to continue.\n");
             Console.ReadKey(true);

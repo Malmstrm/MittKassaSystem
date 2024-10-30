@@ -26,36 +26,24 @@ namespace MittKassaSystem.ProductFolder
         }
         public void AddProduct()
         {
-            while (true)
-            {
-                Console.Clear();
-                display.DisplayAllProducts(products);
 
-                byte newId = input.GetNextID(products);
-                string name = input.SetName();
-                decimal price = input.GetPrice();
+            Console.Clear();
+            display.DisplayAllProducts(products);
 
-                Product newProduct = new Product(newId, name, price);
-                products.Add(newProduct);
-                file.SaveProducts(products);
+            byte newId = input.GetNextID(products);
+            string name = input.SetName();
+            decimal price = input.GetPrice();
 
-                Console.Clear();
-                Console.WriteLine($"Product added\n" +
-                $"ID: {newId}, Name: {name}, Price: {price}");
+            Product newProduct = new Product(newId, name, price);
+            products.Add(newProduct);
+            file.SaveProducts(products);
 
-                Console.WriteLine("Current product list:");
-                foreach (var product in products)
-                {
-                    Console.WriteLine($"{product.Id}: {product.Name} - {product.Price:C}");
-                }
+            Console.Clear();
+            Console.WriteLine($"Product added\n" +
+            $"ID: {newId}, Name: {name}, Price: {price}");
+            Console.WriteLine("\nPress any key to continue.");
+            Console.ReadKey(true);
 
-                Console.Write("\nDo you want to add another product? Y/N: ");
-                if (Console.ReadLine().ToLower() == "n")
-                {
-                    break;
-                }
-
-            }
         }
         public void EditProduct()
         {
