@@ -18,7 +18,7 @@ namespace MittKassaSystem.ProductFolder
             this.display = display;
             this.input = input;
             this.file = fileHandler;
-            this.products = products; // Spara referensen till produktlistan
+            this.products = products;
         }
         public List<Product> GetProducts()
         {
@@ -63,26 +63,18 @@ namespace MittKassaSystem.ProductFolder
                     string newName = Console.ReadLine();
 
                     if (newName.ToLower() == "exit")
-                    {
-                        return;  // Avsluta redigeringen och återgå
-                    }
+                        return;
 
                     if (!string.IsNullOrEmpty(newName))
-                    {
                         edit.Name = newName;
-                    }
                     else
-                    {
                         Console.WriteLine("No new name entered. Keeping current name.");
-                    }
 
                     Console.Write("Set new price: ");
                     string newPriceInput = Console.ReadLine();
 
                     if (newPriceInput.ToLower() == "exit")
-                    {
-                        return;  // Avsluta redigeringen och återgå
-                    }
+                        return;
 
                     if (!string.IsNullOrEmpty(newPriceInput) && decimal.TryParse(newPriceInput, out decimal newPrice))
                     {
@@ -90,9 +82,8 @@ namespace MittKassaSystem.ProductFolder
                         file.SaveProducts(products);
                     }
                     else
-                    {
                         Console.WriteLine("No new price entered. Keeping current price.");
-                    }
+
                     Console.WriteLine("Product updated.");
                 }
                 else
@@ -100,14 +91,12 @@ namespace MittKassaSystem.ProductFolder
                     Console.WriteLine("Couldnt find ID");
                     Console.ReadKey(true);
                 }
-
             }
             else
             {
                 Console.WriteLine("Invalid ID, try again.");
                 Console.ReadKey(true);
             }
-            
         }
         public void DeleteProduct()
         {
@@ -133,8 +122,6 @@ namespace MittKassaSystem.ProductFolder
                 else Console.WriteLine($"Product with ID {id} does not exist.");
             }
             else Console.WriteLine("Invalid id, please try again.");
-
-            
         }
     }
 }

@@ -11,10 +11,9 @@ namespace MittKassaSystem.ShoppingFolder
         public bool ProcessPayment(decimal totalAmount, decimal amountPaid)
         {
             if (amountPaid >= totalAmount)
-            {
                 return true;
-            }
             Console.WriteLine("Insufficient amount paid, please try again.");
+
             return false;
         }
     }

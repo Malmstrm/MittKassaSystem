@@ -15,9 +15,7 @@ namespace MittKassaSystem.ProductFolder
         public void DisplayAllProducts(List<Product> products)
         {
             if (products.Count == 0)
-            {
                 Console.WriteLine("No availble products.");
-            }
             else
             {
                 Console.WriteLine($"Availble products:\n");

@@ -22,9 +22,8 @@ namespace MittKassaSystem.ProductFolder
             byte nexID = 1;
 
             while (products.Any(p => p.Id == nexID))
-            {
                 nexID++;
-            }
+
             return nexID;
         }
         public string SetName()
@@ -39,13 +38,9 @@ namespace MittKassaSystem.ProductFolder
             {
                 Console.Write("Set price: ");
                 if (decimal.TryParse(Console.ReadLine(), out price))
-                {
                     break;
-                }
                 else
-                {
                     Console.WriteLine("Invalid input, enter valid input.");
-                }
             }
             return price;
         }
