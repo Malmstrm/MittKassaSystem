@@ -15,7 +15,6 @@ namespace MittKassaSystem.MenuFolder
         private readonly MenuSystem _menuSystem;
         private readonly ProductManager productManager;
         private readonly MenuProducts _menuProducts;
-        private readonly CustomerMenu _customerMenu;
         private readonly ShoppingCart _shoppingCart;
 
         public MainMenu()
@@ -27,12 +26,11 @@ namespace MittKassaSystem.MenuFolder
             string[] options = 
                 { "Customer", "Product", "Exit" };
 
-            // Initialisera produktlistan EN gång här
             FileHandler file = new FileHandler();
             products = file.LoadProduct();
 
             ProductDisplay display = new ProductDisplay();
-            ProductInput input = new ProductInput(products); // Skickar samma produktlista
+            ProductInput input = new ProductInput(products);
 
             ReceiptNumberGenerator numberGenerator = new ReceiptNumberGenerator();
             ReceiptRepository receiptRepository = new ReceiptRepository(numberGenerator);
@@ -40,11 +38,8 @@ namespace MittKassaSystem.MenuFolder
 
             _menuSystem = new MenuSystem(prompt, options);
 
-            // Skicka produkterna till alla instanser
             productManager = new ProductManager(display, input, file, products);
             _menuProducts = new MenuProducts(products);
-            _customerMenu = new CustomerMenu(products);
-
             _shoppingCart = new ShoppingCart(productManager, receiptRepository, receiptDisplay, numberGenerator, products);
         }
         public void Show()

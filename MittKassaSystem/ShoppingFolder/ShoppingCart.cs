@@ -25,7 +25,7 @@ namespace MittKassaSystem.ShoppingFolder
             this.receiptRepository = receiptRepository;
             this.receiptDisplay = receiptDisplay;
             this.numberGenerator = numberGenerator;
-            this.availableProducts = availableProducts; // Se till att det är List<Product>
+            this.availableProducts = availableProducts;
             this.display = new ProductDisplay();
         }
         public void AddToCart(Product product, byte quantity)
@@ -61,36 +61,27 @@ namespace MittKassaSystem.ShoppingFolder
                     Console.ReadKey(true);
                     CompletePurchase();
                     break;
-                }
-                // Dela upp inmatningen i produkt-ID och kvantitet
+
                 var parts = line.Split(' ');
 
-                // Kontrollera att inmatningen innehåller två delar och att dessa kan tolkas som byte
                 if (parts.Length == 2 && byte.TryParse(parts[0], out byte id) && byte.TryParse(parts[1], out byte quantity))
                 {
-                    // Leta efter produkten med angivet ID i tillgängliga produkter
                     Product selectedProduct = availableProducts.Find(p => p.Id == id);
                     if (selectedProduct != null)
                     {
-                        // Kontrollera om produkten redan finns i kundvagnen
                         var existingItem = cart.FirstOrDefault(item => item.Product.Id == id);
 
                         if (existingItem != null)
                         {
-                            // Om produkten redan finns, öka kvantiteten
                             existingItem.Quantity += quantity;
                             Console.WriteLine($"Increased quantity of {selectedProduct.Name} to {existingItem.Quantity}.");
                         }
                         else
                         {
-                            // Om produkten inte finns, lägg till den i kundvagnen
                             cart.Add(new ShoppingCartItem(selectedProduct, quantity));
                             Console.WriteLine($"{quantity} of {selectedProduct.Name} added to your cart.");
                         }
-
-                        // Visa uppdaterad kundvagn
                         DisplayCart();
-
                     }
                     else
                     {
@@ -136,7 +127,7 @@ namespace MittKassaSystem.ShoppingFolder
                     PaymentProcessor paymentProcessor = new PaymentProcessor();
                     if (paymentProcessor.ProcessPayment(totalAmount, amountPaid))
                     {
-                        // Process the purchase
+                        
                         List<Product> purchasedProducts = cart.Select(item => item.Product).ToList();
 
                         byte receiptNumber = numberGenerator.GetNextReceiptNumber();

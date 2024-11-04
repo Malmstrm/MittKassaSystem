@@ -18,7 +18,7 @@ namespace MittKassaSystem.ProductFolder
             this.display = display;
             this.input = input;
             this.file = fileHandler;
-            this.products = products; // Spara referensen till produktlistan
+            this.products = products;
         }
         public List<Product> GetProducts()
         {
@@ -64,7 +64,7 @@ namespace MittKassaSystem.ProductFolder
 
                     if (newName.ToLower() == "exit")
                     {
-                        return;  // Avsluta redigeringen och återgå
+                        return;
                     }
 
                     if (!string.IsNullOrEmpty(newName))
@@ -81,7 +81,7 @@ namespace MittKassaSystem.ProductFolder
 
                     if (newPriceInput.ToLower() == "exit")
                     {
-                        return;  // Avsluta redigeringen och återgå
+                        return;
                     }
 
                     if (!string.IsNullOrEmpty(newPriceInput) && decimal.TryParse(newPriceInput, out decimal newPrice))

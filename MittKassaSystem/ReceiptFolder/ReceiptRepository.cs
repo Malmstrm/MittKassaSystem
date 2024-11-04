@@ -21,7 +21,6 @@ namespace MittKassaSystem.ReceiptFolder
             Console.Clear();
             string products = string.Join(", ", receipt.PurchasedProducts.Select(r => r.Name));
             string receiptData = $"*** Receipt Details ***\n" +
-                                 //$"Receipt Number: {numberGenerator.GetNextReceiptNumber()}\n" +
                                  $"Receipt Number: {receipt.ReceiptNumber}\n" +
                                  $"Products: {products}\n" +
                                  $"Total Amount: {receipt.TotalAmount:C}\n" +

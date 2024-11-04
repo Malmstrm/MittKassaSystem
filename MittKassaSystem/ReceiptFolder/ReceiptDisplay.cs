@@ -11,7 +11,7 @@ namespace MittKassaSystem.ReceiptFolder
         public void DisplayReceipt(Receipt receipt)
         {
             Console.WriteLine("\n*** Receipt Details ***");
-            Console.WriteLine($"Receipt Number: {receipt.ReceiptNumber}");  // Använd det kvittonummer som redan finns i kvittot
+            Console.WriteLine($"Receipt Number: {receipt.ReceiptNumber}");
             Console.WriteLine($"Date: {receipt.Date}");
 
             Console.WriteLine("Products:");

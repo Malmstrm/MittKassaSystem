@@ -10,14 +10,12 @@ namespace MittKassaSystem.ReceiptFolder
     {
         private readonly string filePathReceiptNumber = "../../../Files/ReceiptNumber.txt";
         private byte nextReceiptNumber;
-        private static readonly object fileLock = new object(); // Används för att synkronisera filoperationer
+        private static readonly object fileLock = new object();
 
         public ReceiptNumberGenerator()
         {
             LoadReceiptNumber();
         }
-
-        // Ladda kvittonumret från fil, om filen inte finns, skapa ett nytt nummer
         private void LoadReceiptNumber()
         {
             try
@@ -31,41 +29,35 @@ namespace MittKassaSystem.ReceiptFolder
                     }
                     else
                     {
-                        // Hantera korrupt data i filen
                         Console.WriteLine("Invalid data in ReceiptNumber.txt. Starting with 1.");
                         nextReceiptNumber = 1;
-                        SaveReceiptNumber(); // Spara ett nytt nummer
+                        SaveReceiptNumber();
                     }
                 }
                 else
                 {
                     nextReceiptNumber = 1;
-                    SaveReceiptNumber();  // Spara om filen inte existerar
+                    SaveReceiptNumber();
                 }
             }
             catch (Exception ex)
             {
-                // Fånga eventuella fel vid läsning av filen
                 Console.WriteLine($"Error reading receipt number file: {ex.Message}");
                 nextReceiptNumber = 1;
             }
         }
-
-        // Hämta nästa kvittonummer och spara det till fil
         public byte GetNextReceiptNumber()
         {
             byte currentReceiptNumber = nextReceiptNumber;
 
-            lock (fileLock)  // Synkronisera filoperationerna med ett lås
+            lock (fileLock)
             {
                 nextReceiptNumber++;
-                SaveReceiptNumber();  // Uppdatera filen med nästa nummer
+                SaveReceiptNumber(); 
             }
 
             return currentReceiptNumber;
         }
-
-        // Spara det nya kvittonumret till fil
         private void SaveReceiptNumber()
         {
             try
@@ -74,7 +66,6 @@ namespace MittKassaSystem.ReceiptFolder
             }
             catch (Exception ex)
             {
-                // Fånga eventuella fel vid skrivning till filen
                 Console.WriteLine($"Error saving receipt number file: {ex.Message}");
             }
         }
