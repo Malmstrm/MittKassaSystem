@@ -12,14 +12,10 @@ namespace MittKassaSystem
     {
         public void Start()
         {
-
-            Console.WriteLine("Welcome to KassaSystemet 1.0\n");
-            Console.WriteLine("Loading system.");
-            Console.WriteLine("Loading files.");
-
             MainMenu mainMenu = new MainMenu();
-            FileHandler file = new FileHandler();
-            file.LoadProduct();
+            Console.WriteLine("Welcome to KassaSystmet!");
+            Console.WriteLine("Press any key to continue.");
+            Console.ReadKey(true);
             mainMenu.Show();
 
         }

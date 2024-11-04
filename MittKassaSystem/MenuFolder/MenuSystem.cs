@@ -29,7 +29,7 @@ namespace MittKassaSystem.MenuFolder
                 if (i == selectionIndex)
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.BackgroundColor = ConsoleColor.DarkCyan;
                 }
                 else
                 {

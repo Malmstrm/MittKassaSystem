@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MittKassaSystem.ProductFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +7,23 @@ using System.Threading.Tasks;
 
 namespace MittKassaSystem.MenuFolder
 {
+    //Används ej ännu.
     public class CustomerMenu
     {
-        private readonly MenuSystem _menuSystem;
+        private List<Product> products;
+        private MenuSystem _menuSystem;
         public CustomerMenu()
         {
-            string prompt = "Customer";
-            string[] options = { };
+            string prompt = 
+                "Customer";
+            string[] options = 
+                { };
 
             _menuSystem = new MenuSystem(prompt, options);
+        }
+        public CustomerMenu(List<Product> products)
+        {
+            this.products = products; // Spara referensen till produktlistan
         }
         public void Show()
         {
@@ -40,6 +49,5 @@ namespace MittKassaSystem.MenuFolder
             }
             return true;
         }
-
     }
 }

@@ -15,15 +15,17 @@ namespace MittKassaSystem.MenuFolder
         private readonly ProductInput input;
         private readonly FileHandler file;
         private readonly ProductManager productManager;
-        public MenuProducts()
+        public MenuProducts(List<Product> products)
         {
-            string prompt = "Products";
-            string[] options = { "Add", "Edit", "Delete", "Return" };
+            string prompt = 
+                "Products";
+            string[] options = 
+                { "Add", "Edit", "Delete", "Return" };
             _menuSystem = new MenuSystem(prompt, options);
             display = new ProductDisplay();
             input = new ProductInput(products);
             file = new FileHandler();
-            productManager = new ProductManager(display, input, file);
+            productManager = new ProductManager(display, input, file, products);
         }
         public void Show()
         {

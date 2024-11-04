@@ -22,6 +22,7 @@ namespace MittKassaSystem.ReceiptFolder
             TotalAmount = totalAmount;
             AmountPaid = amountPaid;
             Change = amountPaid - totalAmount;
+            Date = DateTime.Now;
         }
     }
 }

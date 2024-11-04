@@ -29,7 +29,7 @@ namespace MittKassaSystem.ProductFolder
         }
         public string SetName()
         {
-            Console.Write("Enter name: ");
+            Console.Write("\nEnter name: ");
             return Console.ReadLine();
         }
         public decimal GetPrice()
