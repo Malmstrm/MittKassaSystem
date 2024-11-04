@@ -20,8 +20,12 @@ namespace MittKassaSystem.MenuFolder
 
         public MainMenu()
         {
-            string prompt = "Welcome";
-            string[] options = { "Customer", "Product", "Exit" };
+            string prompt = 
+                "Navigate through UpArrow, W and DownArrow, S." +
+                "\nEnter choice through 'Enter'." +
+                "\n-----------------------------";
+            string[] options = 
+                { "Customer", "Product", "Exit" };
 
             // Initialisera produktlistan EN gång här
             FileHandler file = new FileHandler();

@@ -17,8 +17,10 @@ namespace MittKassaSystem.MenuFolder
         private readonly ProductManager productManager;
         public MenuProducts(List<Product> products)
         {
-            string prompt = "Products";
-            string[] options = { "Add", "Edit", "Delete", "Return" };
+            string prompt = 
+                "Products";
+            string[] options = 
+                { "Add", "Edit", "Delete", "Return" };
             _menuSystem = new MenuSystem(prompt, options);
             display = new ProductDisplay();
             input = new ProductInput(products);

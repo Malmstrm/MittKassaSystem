@@ -2,6 +2,7 @@
 using MittKassaSystem.ReceiptFolder;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,11 +39,12 @@ namespace MittKassaSystem.ShoppingFolder
             while (true)
             {
                 Console.Clear();
-
+                Console.WriteLine("Enter pay to continue to checkout.");
                 display.DisplayAllProducts(availableProducts);
                 DisplayCart();
 
                 Console.WriteLine("\nEnter the product ID and quantity (e.g., '1 3'), or type 'exit' to return to the main menu:");
+                Console.WriteLine("Enter 'pay' to continue to checkout.\n");
                 string line = Console.ReadLine();
 
                 if (line.ToLower() == "exit")

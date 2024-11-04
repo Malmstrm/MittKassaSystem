@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 namespace MittKassaSystem.MenuFolder
 {
+    //Används ej ännu.
     public class CustomerMenu
     {
         private List<Product> products;
         private MenuSystem _menuSystem;
         public CustomerMenu()
         {
-            string prompt = "Customer";
-            string[] options = { };
+            string prompt = 
+                "Customer";
+            string[] options = 
+                { };
 
             _menuSystem = new MenuSystem(prompt, options);
         }
@@ -46,6 +49,5 @@ namespace MittKassaSystem.MenuFolder
             }
             return true;
         }
-
     }
 }
