@@ -13,6 +13,7 @@ namespace MittKassaSystem
         public void Start()
         {
             MainMenu mainMenu = new MainMenu();
+            Console.Clear();
             Console.WriteLine("Welcome to KassaSystmet!");
             Console.WriteLine("Press any key to continue.");
             Console.ReadKey(true);
