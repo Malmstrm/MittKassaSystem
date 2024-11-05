@@ -8,7 +8,6 @@ namespace MittKassaSystem.ReceiptFolder
 {
     public class ReceiptRepository
     {
-        private readonly string filePathReceipt = "../../../Files/Receipt.csv";
         private readonly ReceiptNumberGenerator numberGenerator;
         public ReceiptRepository(ReceiptNumberGenerator numberGenerator)
         {
@@ -17,7 +16,15 @@ namespace MittKassaSystem.ReceiptFolder
         public void SaveReceipt(Receipt receipt)
         {
             Console.Clear();
+
+            string currentDate = DateTime.Now.ToString("yyyyMMdd");
+
+            string filePathReceipt = $"../../../Files/RECEIPT_{currentDate}.txt";
+
+            string newRepecipt = "\n====== New Receipt ======\n";
+
             string products = string.Join(", ", receipt.PurchasedProducts.Select(r => r.Name));
+
             string receiptData = $"*** Receipt Details ***\n" +
                                  $"Receipt Number: {receipt.ReceiptNumber}\n" +
                                  $"Products: {products}\n" +
